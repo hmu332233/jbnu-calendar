@@ -1,17 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import Main from 'pages/Main';
+
 function MainApp(props) {
   return (
-    <div>
-      캘린더 시작!
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" component={Main} />
+      </Switch>
+    </Router>
   );
 }
 
-MainApp.propTypes = {
-};
-MainApp.defaultProps = {
-};
+MainApp.propTypes = {};
+MainApp.defaultProps = {};
 
 export default MainApp;
