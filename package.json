@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "minung.han <hmu332233@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "parcel src/client/index.html"
+  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
