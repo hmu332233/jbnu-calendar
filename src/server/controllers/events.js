@@ -1,5 +1,7 @@
 const Event = require('../models/events');
 
+const dayjs = require('dayjs');
+
 exports.create = async (req, res, next) => {
   const { name, location, url, startDate, endDate, isAllDay } = req.body;
 
@@ -7,6 +9,22 @@ exports.create = async (req, res, next) => {
     await Event.create({ name, location, url, startDate, endDate, isAllDay });
     res.json({ result: true });
   } catch (e) {
-    throw e;
+    next(e);
+  }
+}
+
+exports.getEventsWithin3Month = async (req, res, next) => {
+  const { date } = req.query;
+  const isValid = dayjs(date).isValid();
+
+  if (!isValid) {
+    return res.status(400).json({ result: false, message: 'Invalid Date' });
+  }
+
+  try {
+    const events = await Event.getEventsWithin3Month({ date });
+    res.json({ result: true, data: events });
+  } catch (e) {
+    next(e);
   }
 }
