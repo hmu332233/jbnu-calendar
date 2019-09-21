@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const logger = require('morgan');
 
+const middleware = require('./middlewares');
 const config = require('./configs');
 
 mongoose.Promise = global.Promise;
@@ -21,22 +23,18 @@ NODE_ENV = 'development';
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-if (NODE_ENV === 'development') {
-  const logger = require('morgan');
-  app.use(logger('dev'));
-  app.use(function(req, res, next) {
-    console.log(req.query);
-    console.log(req.body);
-    console.log(req.params);
-    next();
-  });
-  app.use('/', express.static('dist'));
-} else {
-  app.use('/assets', express.static('build'));
-}
+app.use(logger('dev'));
+app.use(middleware.logger.params);
+
+// if (NODE_ENV === 'development') {
+//   app.use('/', express.static('dist'));
+// } else {
+//   app.use('/assets', express.static('build'));
+// }
 
 app.use('/api', require('./routes/api'));
 // app.use('/', require('./routes/view'));
+app.use(middleware.error.handler)
 
 // Server
 const port = 3000;
