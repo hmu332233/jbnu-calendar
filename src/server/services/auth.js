@@ -3,8 +3,8 @@ const Users = require('../models/users');
 
 const { JWT_SECRET } = require('../configs');
 
-exports.verifyIdPwAndReturnToken = async function ({ id, pw }) {
-  const { user, isVerified } = await Users.verify({ id, pw });
+exports.verifyUserAndReturnToken = async function ({ email, password }) {
+  const { user, isVerified } = await Users.verify({ email, password });
   if (!isVerified) {
     return { isVerified: false };
   }
