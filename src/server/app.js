@@ -21,13 +21,21 @@ NODE_ENV = 'development';
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// if (NODE_ENV === 'development') {
-//   app.use('/', express.static('dist'));
-// } else {
-//   app.use('/assets', express.static('build'));
-// }
+if (NODE_ENV === 'development') {
+  const logger = require('morgan');
+  app.use(logger('dev'));
+  app.use(function(req, res, next) {
+    console.log(req.query);
+    console.log(req.body);
+    console.log(req.params);
+    next();
+  });
+  app.use('/', express.static('dist'));
+} else {
+  app.use('/assets', express.static('build'));
+}
 
-// app.use('/api', require('./routes/api'));
+app.use('/api', require('./routes/api'));
 // app.use('/', require('./routes/view'));
 
 // Server
