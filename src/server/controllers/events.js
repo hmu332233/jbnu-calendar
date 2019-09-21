@@ -1,4 +1,4 @@
-const Event = require('../models/events');
+const Events = require('../models/events');
 
 const dayjs = require('dayjs');
 
@@ -6,7 +6,7 @@ exports.create = async (req, res, next) => {
   const { name, location, url, startDate, endDate, isAllDay } = req.body;
 
   try {
-    await Event.create({ name, location, url, startDate, endDate, isAllDay });
+    await Events.create({ name, location, url, startDate, endDate, isAllDay });
     res.json({ result: true });
   } catch (e) {
     next(e);
@@ -22,7 +22,7 @@ exports.getEventsWithin3Month = async (req, res, next) => {
   }
 
   try {
-    const events = await Event.getEventsWithin3Month({ date });
+    const events = await Events.getEventsWithin3Month({ date });
     res.json({ result: true, data: events });
   } catch (e) {
     next(e);
