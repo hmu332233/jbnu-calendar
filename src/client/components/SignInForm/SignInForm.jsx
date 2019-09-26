@@ -9,7 +9,7 @@ function SignInForm(props) {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        props.onButtonClick(values);
       }
     });
   };
@@ -51,7 +51,11 @@ function SignInForm(props) {
   );
 }
 
-SignInForm.propTypes = {};
-SignInForm.defaultProps = {};
+SignInForm.propTypes = {
+  onButtonClick: PropTypes.func,
+};
+SignInForm.defaultProps = {
+  onButtonClick: v => v,
+};
 
 export default Form.create({ name: 'normal_login' })(SignInForm);
