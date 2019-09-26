@@ -3,13 +3,13 @@ const { db, CONSTANTS } = require('./info');
 const Users = {
   CONSTANTS,
   verify: async function ({ email, password }) {
-    const user = await db.findOne({ email, password }).lean();
+    const user = await db.users.findOne({ email, password }).lean();
 
     if (!user) {
       return { isVerified: false };
     }
 
-    return { user, isVerified };
+    return { user, isVerified: true };
   }
 }
 
