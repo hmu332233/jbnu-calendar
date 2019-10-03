@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Main from 'pages/Main';
+const Main = lazy(() => import('pages/Main'));
+const SignIn = lazy(() => import('pages/SignIn'));
 
 function MainApp(props) {
   return (
     <Router>
+      <Suspense fallback={''}>
       <Switch>
-        <Route path="/" component={Main} />
+        <Route path='/' exact component={Main} />
+        <Route path='/signin' exact component={SignIn} />
       </Switch>
+      </Suspense>
     </Router>
   );
 }

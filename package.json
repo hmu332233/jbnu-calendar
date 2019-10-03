@@ -5,7 +5,8 @@
   "author": "minung.han <hmu332233@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "parcel src/client/index.html"
+    "start": "parcel src/client/index.html",
+    "start-server": "node src/server/app.js"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
