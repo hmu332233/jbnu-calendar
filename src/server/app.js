@@ -26,14 +26,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger('dev'));
 app.use(middleware.logger.params);
 
-// if (NODE_ENV === 'development') {
-//   app.use('/', express.static('dist'));
-// } else {
-//   app.use('/assets', express.static('build'));
-// }
+app.use(express.static('dist'));
 
 app.use('/api', require('./routes/api'));
-// app.use('/', require('./routes/view'));
+app.use('/', require('./routes/view'));
 app.use(middleware.error.handler)
 
 // Server
