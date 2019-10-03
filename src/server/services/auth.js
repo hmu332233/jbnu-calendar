@@ -12,3 +12,13 @@ exports.verifyUserAndReturnToken = async function ({ email, password }) {
   const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '1d' });
   return { isVerified: true, token };
 }
+
+exports.verifyToken = ({ token }) => {
+  try {
+    const secret = JWT_SECRET;
+    const { _id } = jwt.verify(token, secret);
+    return { isVerified: true, _id };
+  } catch (err) {
+    return { isVerified: false };
+  }
+};

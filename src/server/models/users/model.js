@@ -1,16 +1,17 @@
 const { db, CONSTANTS } = require('./info');
 
-const Users = {
-  CONSTANTS,
-  verify: async function ({ email, password }) {
-    const user = await db.users.findOne({ email, password }).lean();
+exports.CONSTANTS = CONSTANTS;
 
-    if (!user) {
-      return { isVerified: false };
-    }
+exports.findById = ({ _id }) => {
+  return db.users.findOne({ _id }).lean();
+};
 
-    return { user, isVerified: true };
+exports.verify = async ({ email, password }) => {
+  const user = await db.users.findOne({ email, password }).lean();
+
+  if (!user) {
+    return { isVerified: false };
   }
-}
 
-module.exports = Users;
+  return { user, isVerified: true };
+};
