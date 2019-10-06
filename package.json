@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel src/client/index.html",
-    "start-server": "node src/server/app.js"
+    "start-server": "node src/server/bin/www"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
