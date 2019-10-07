@@ -6,10 +6,9 @@ const logger = require('morgan');
 const createError = require('http-errors');
 
 const middleware = require('./middlewares');
-const config = require('./configs');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.once('open', () => {
   console.log('DB connected!');
@@ -17,8 +16,6 @@ db.once('open', () => {
 db.on('error', err => {
   console.log('DB ERROR:', err);
 });
-
-NODE_ENV = 'development';
 
 // Middlewares
 app.use(bodyParser.json());
@@ -47,7 +44,7 @@ app.use((err, req, res, next) => {
 
   // set locals, only providing error in development
   res.locals.message = apiError.message;
-  res.locals.error = NODE_ENV === 'development' ? apiError : {};
+  res.locals.error = process.env.NODE_ENV === 'development' ? apiError : {};
 
   return res.status(apiError.status).json({ message: apiError.message });
 });
