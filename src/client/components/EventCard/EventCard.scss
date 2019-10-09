@@ -1,0 +1,13 @@
+.EventCard {
+  &__info {
+    margin-top: 8px;
+  }
+}
+
+.InfoRow {
+  display: flex;
+  align-items: center;
+  &__text {
+    margin-left: 8px;
+  }
+}
