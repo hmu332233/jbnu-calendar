@@ -10,7 +10,9 @@
     "test": "cp src/server/configs/.env.test src/server/.env; jest --detectOpenHandles"
   },
   "jest": {
-    "setupFilesAfterEnv": ["./src/server/tests/setup.js"]
+    "setupFilesAfterEnv": [
+      "./src/server/tests/setup.js"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -24,6 +26,7 @@
   },
   "dependencies": {
     "antd": "^3.23.3",
+    "antd-mobile": "^2.3.1",
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "cookie-parser": "^1.4.4",
