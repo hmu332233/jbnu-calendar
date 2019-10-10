@@ -51,11 +51,11 @@ EventCard.propTypes = {
   time: PropTypes.string
 };
 EventCard.defaultProps = {
-  title: '',
-  description: '',
-  location: '',
-  date: '',
-  time: ''
+  title: '열정! 전북대 날개를 달다',
+  description: '어쩌구저쩌구 아하하핳',
+  location: '전북대학교 삼성문화회관',
+  date: '2019.02.11',
+  time: '19:17'
 };
 
 export default EventCard;
