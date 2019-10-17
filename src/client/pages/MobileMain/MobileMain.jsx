@@ -10,6 +10,7 @@ import Icon from 'components/Icon';
 
 import VerticalCalendar from 'components/VerticalCalendar';
 import EventCard from 'components/EventCard';
+import Calendar from 'components/Calendar';
 
 class MobileMain extends React.Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class MobileMain extends React.Component {
               });
             }}
           >
-            전체 캘린더 자리
+            <Calendar />
           </TabBar.Item>
           <TabBar.Item
             title="Day"
