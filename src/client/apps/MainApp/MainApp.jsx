@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const Main = lazy(() => import('pages/Main'));
-const SignIn = lazy(() => import('pages/SignIn'));
 
 function MainApp(props) {
   return (
     <Router>
       <Suspense fallback={''}>
-      <Switch>
-        <Route path='/' exact component={Main} />
-        <Route path='/signin' exact component={SignIn} />
-      </Switch>
+        <Switch>
+          <Route path='/' exact component={Main} />
+        </Switch>
       </Suspense>
     </Router>
   );
