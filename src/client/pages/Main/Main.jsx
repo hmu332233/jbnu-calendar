@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Main.scss';
 
+import MainCalendar from 'components/MainCalendar';
+
 function Main(props) {
   return (
     <div className={styles.Main}>
-      메인 페이지
+      <MainCalendar />
     </div>
   );
 }
