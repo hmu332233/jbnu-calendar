@@ -17,7 +17,11 @@
     }
   },
   "lint-staged": {
-    "src/**/*.js, src/**/*.jsx": [
+    "src/**/*.jsx": [
+      "prettier --write --config .prettierrc",
+      "git add"
+    ],
+    "src/**/*.js": [
       "prettier --write --config .prettierrc",
       "git add"
     ]
