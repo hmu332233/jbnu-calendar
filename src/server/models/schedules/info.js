@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const CONSTANTS = {
   CATEGORY: {
@@ -9,26 +9,26 @@ const CONSTANTS = {
 
 const schema = mongoose.Schema({
   calendarId: {
-    type: String
+    type: String,
   },
   title: {
-    type: String
+    type: String,
   },
   body: {
-    type: String
+    type: String,
   },
   location: {
-    type: String
+    type: String,
   },
   url: {
-    type: String
+    type: String,
   },
   start: {
     type: Date,
-    default: new Date()
+    default: new Date(),
   },
   end: {
-    type: Date
+    type: Date,
   },
   category: {
     type: String,
@@ -36,13 +36,13 @@ const schema = mongoose.Schema({
   },
   show: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
-const model = mongoose.model("schedule", schema);
+const model = mongoose.model('schedule', schema);
 
 module.exports = {
-  db: { events: model },
-  CONSTANTS
+  db: { schedules: model },
+  CONSTANTS,
 };

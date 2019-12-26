@@ -7,7 +7,8 @@
   "scripts": {
     "start": "parcel src/client/index.html",
     "start:server": "node src/server/bin/www",
-    "test": "jest --detectOpenHandles --forceExit --config src/server/tests/config.js"
+    "test": "jest --detectOpenHandles --forceExit --config src/server/tests/config.js",
+    "prettier": "prettier --write --config .prettierrc '**/*.js' '**/*.jsx' '**/*.scss'"
   },
   "husky": {
     "hooks": {
@@ -16,7 +17,7 @@
     }
   },
   "lint-staged": {
-    "src/server/*.js, src/client/.jsx": [
+    "src/**/*.js, src/**/*.jsx": [
       "prettier --write --config .prettierrc",
       "git add"
     ]
