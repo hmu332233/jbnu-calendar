@@ -6,13 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel src/client/index.html",
-    "start:dev": "cp src/server/configs/.env.dev src/server/.env; node src/server/bin/www",
-    "test": "cp src/server/configs/.env.test src/server/.env; jest --detectOpenHandles"
-  },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "./src/server/tests/setup.js"
-    ]
+    "start:server": "node src/server/bin/www",
+    "test": "jest --detectOpenHandles --forceExit --config src/server/tests/config.js"
   },
   "husky": {
     "hooks": {
@@ -29,6 +24,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@shelf/jest-mongodb": "^1.1.3",
     "babel-plugin-import": "^1.12.1",
     "babel-plugin-module-resolver": "^3.2.0",
     "husky": "^3.1.0",

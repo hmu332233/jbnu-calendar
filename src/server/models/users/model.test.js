@@ -1,6 +1,15 @@
+const { setupDB } = require('../../tests/setupDb');
+setupDB();
+
+const { db } = require('./info');
 const { verify } = require('./model');
 
 describe('verify', () => {
+
+  beforeAll(async () => {
+    await db.users.create({ email: 'test', password: 'test' });
+  })
+
   test('isVerified - true', async () => {
     const email = 'test';
     const password = 'test';
