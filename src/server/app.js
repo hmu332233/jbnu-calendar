@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(logger('dev'));
 app.use(middleware.logger.params);
+app.use(middleware.logger.mongooseDebug);
 
 app.use(express.static('dist'));
 
@@ -48,7 +49,5 @@ app.use((err, req, res, next) => {
 
   return res.status(apiError.status).json({ message: apiError.message });
 });
-
-
 
 module.exports = app;

@@ -1,4 +1,4 @@
-const events = require('./events');
+const schedules = require('./schedules');
 const auth = require('./auth');
 
-module.exports = { events, auth };
+module.exports = { schedules, auth };
