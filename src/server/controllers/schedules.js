@@ -4,7 +4,7 @@ exports.getSchedulesWithin1Month = async (req, res, next) => {
   const { date } = req.body;
   try {
     const schedules = await Schedules.getSchedulesWithin1Month({ date });
-    res.json(schedules);
+    res.json(schedules.map(v => ({ ...v, id: v._id })));
   } catch (err) {
     next(err);
   }
