@@ -1,6 +1,8 @@
 const { db, CONSTANTS } = require('./info');
 const dayjs = require('dayjs');
 
+exports.CONSTANTS = CONSTANTS;
+
 exports.create = ({ calendarId, title, body, location, url, start, end, category }) => {
   return db.schedules.create({
     calendarId,
