@@ -1,6 +1,20 @@
 const { db, CONSTANTS } = require('./info');
 const dayjs = require('dayjs');
 
+exports.create = ({ calendarId, title, body, location, url, start, end, category }) => {
+  return db.schedules.create({
+    calendarId,
+    title,
+    body,
+    location,
+    url,
+    start: dayjs(start).toDate(),
+    end: dayjs(end).toDate(),
+    category,
+    show: true,
+  });
+};
+
 exports.getSchedulesWithin1Month = ({ date = new Date() } = {}) => {
   const startDate = dayjs(date)
     .startOf('month')
