@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './ScheduleRegister.scss';
 
 import Layout from 'components/Layout';
+import ScheduleForm from 'components/ScheduleForm';
 
 class ScheduleRegister extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class ScheduleRegister extends React.Component {
   render() {
     return (
       <Layout>
-        <div className={styles.ScheduleRegister}>한국어가 안나옴?</div>
+        <ScheduleForm onSubmit={console.log} />
       </Layout>
     );
   }
