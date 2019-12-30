@@ -10,6 +10,8 @@ const store = createStore(rootReducer, devTools);
 
 import MainApp from './apps/MainApp';
 
+import 'antd/dist/antd.css';
+
 ReactDOM.render(
   <Provider store={store}>
     <MainApp />

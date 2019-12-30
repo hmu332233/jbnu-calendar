@@ -14,7 +14,6 @@
         }
       }
     ],
-    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }, "antd"],
-    ["import", { "libraryName": "antd-mobile", "libraryDirectory": "es", "style": "css" }, "antd-mobile"]
+    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }, "antd"]
   ]
 }

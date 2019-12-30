@@ -12,7 +12,7 @@ class ScheduleRegister extends React.Component {
   render() {
     return (
       <Layout>
-        <div className={styles.ScheduleRegister}>스케쥴</div>
+        <div className={styles.ScheduleRegister}>한국어가 안나옴?</div>
       </Layout>
     );
   }

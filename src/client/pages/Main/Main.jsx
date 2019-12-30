@@ -4,7 +4,6 @@ import styles from './Main.scss';
 
 import axios from 'axios';
 
-import Header from 'components/Header';
 import MainCalendar from 'components/MainCalendar';
 
 class Main extends React.Component {
