@@ -4,6 +4,7 @@ import styles from './Main.scss';
 
 import axios from 'axios';
 
+import Layout from 'components/Layout';
 import MainCalendar from 'components/MainCalendar';
 
 class Main extends React.Component {
@@ -26,9 +27,9 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div className={styles.Main}>
+      <Layout>
         <MainCalendar schedules={this.state.schedules} />
-      </div>
+      </Layout>
     );
   }
 }

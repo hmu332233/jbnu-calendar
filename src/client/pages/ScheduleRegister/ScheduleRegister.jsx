@@ -4,6 +4,8 @@ import styles from './ScheduleRegister.scss';
 
 import axios from 'axios';
 
+import { PageHeader } from 'antd';
+
 import Layout from 'components/Layout';
 import ScheduleForm from 'components/ScheduleForm';
 import ScheduleTable from 'components/ScheduleTable';
@@ -45,6 +47,7 @@ class ScheduleRegister extends React.Component {
   render() {
     return (
       <Layout>
+        <PageHeader title="일정 관리" />
         <ScheduleForm onSubmit={this.handleSubmit} />
         <ScheduleTable items={this.state.schedules} />
       </Layout>

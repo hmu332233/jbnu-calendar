@@ -1,7 +1,18 @@
 .Layout {
-  height: 100%;
+  height: 100vh;
+  & &__header {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    &__title {
+      margin-bottom: 0;
+    }
+    &__menu {
+      margin-left: auto;
+      line-height: 64px;
+    }
+  }
   &__content {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-top: 24px;
   }
 }
