@@ -12,7 +12,7 @@ function MainApp(props) {
       <Suspense fallback={''}>
         <Switch>
           <Route path="/" exact component={Main} />
-          <Route path={['/schedules/new', '/schedules/edit']} exact component={ScheduleRegister} />
+          <Route path={['/schedules', '/schedules']} exact component={ScheduleRegister} />
         </Switch>
       </Suspense>
     </Router>
