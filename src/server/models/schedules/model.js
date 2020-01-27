@@ -17,6 +17,10 @@ exports.create = ({ calendarId, title, body, location, url, start, end, category
   });
 };
 
+exports.getMySchedules = () => {
+  return db.schedules.find({}).lean();
+};
+
 exports.getSchedulesWithin1Month = ({ date = new Date() } = {}) => {
   const startDate = dayjs(date)
     .startOf('month')
