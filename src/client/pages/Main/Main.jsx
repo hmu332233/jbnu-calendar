@@ -11,6 +11,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      calendars: [],
       schedules: [],
     };
   }
@@ -21,14 +22,17 @@ class Main extends React.Component {
 
   fetchSchedules = () => {
     axios.get('/api/v1/schedules').then(res => {
-      this.setState({ schedules: res.data });
+      this.setState({
+        calendars: res.data.calendars,
+        schedules: res.data.schedules,
+      });
     });
   };
 
   render() {
     return (
       <Layout>
-        <MainCalendar schedules={this.state.schedules} />
+        <MainCalendar calendars={this.state.calendars} schedules={this.state.schedules} />
       </Layout>
     );
   }

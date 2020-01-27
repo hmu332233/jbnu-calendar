@@ -31,7 +31,7 @@ class ScheduleRegister extends React.Component {
   };
 
   fetchSchedules = () => {
-    axios.get('/api/v1/schedules').then(res => {
+    axios.get('/api/v1/schedules/my').then(res => {
       this.setState({ schedules: res.data });
     });
   };
