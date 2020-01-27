@@ -18,7 +18,7 @@ function ScheduleForm(props) {
   const { value: url, onChange: onUrlChange } = useInput();
   const { value: location, onChange: onLocationChange } = useInput();
   const [dates, setDates] = useState({ start: '', end: '' });
-  const [showTime, toggle] = useToggle(true);
+  const [showTime, toggle] = useToggle(false);
   const [category, setCategory] = useState('');
 
   const handleCategoryChange = value => {
@@ -38,7 +38,7 @@ function ScheduleForm(props) {
       url,
       start: dates.start,
       end: dates.end,
-      allDay: showTime,
+      allDay: !showTime,
     });
   };
 
@@ -60,7 +60,9 @@ function ScheduleForm(props) {
         </Form.Item>
         <Form.Item>
           <DatePicker.RangePicker style={{ width: '100%' }} showTime={showTime} format={showTime ? DATE_TYPE.DATE : DATE_TYPE.TIME} onChange={handleDateChange} placeholder={['시작일', '종료일']} />
-          <Checkbox onChange={toggle}>종일</Checkbox>
+          <Checkbox checked={!showTime} onChange={toggle}>
+            종일
+          </Checkbox>
         </Form.Item>
         <Form.Item>
           <Input placeholder="위치" value={location} onChange={onLocationChange} />

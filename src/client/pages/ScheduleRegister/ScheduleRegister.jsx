@@ -36,9 +36,9 @@ class ScheduleRegister extends React.Component {
     });
   };
 
-  handleSubmit = ({ categoryId, title, body, location, url, start, end, allDay }) => {
+  handleSubmit = ({ calendarId, title, body, location, url, start, end, allDay }) => {
     const data = {
-      categoryId,
+      calendarId,
       title,
       body,
       location,
