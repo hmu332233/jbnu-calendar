@@ -4,7 +4,7 @@ import styles from './ScheduleRegister.scss';
 
 import axios from 'axios';
 
-import { PageHeader } from 'antd';
+import { Row, Col } from 'antd';
 
 import Layout from 'components/Layout';
 import ScheduleForm from 'components/ScheduleForm';
@@ -14,12 +14,20 @@ class ScheduleRegister extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      calendars: [],
       schedules: [],
     };
   }
 
   componentDidMount = () => {
+    this.fetchCalendars();
     this.fetchSchedules();
+  };
+
+  fetchCalendars = () => {
+    axios.get('/api/v1/calendars').then(res => {
+      this.setState({ calendars: res.data });
+    });
   };
 
   fetchSchedules = () => {
@@ -28,8 +36,9 @@ class ScheduleRegister extends React.Component {
     });
   };
 
-  handleSubmit = ({ title, body, location, url, start, end, allDay }) => {
+  handleSubmit = ({ categoryId, title, body, location, url, start, end, allDay }) => {
     const data = {
+      categoryId,
       title,
       body,
       location,
@@ -46,10 +55,15 @@ class ScheduleRegister extends React.Component {
 
   render() {
     return (
-      <Layout>
-        <PageHeader title="일정 관리" />
-        <ScheduleForm onSubmit={this.handleSubmit} />
-        <ScheduleTable items={this.state.schedules} />
+      <Layout activePage="schedules">
+        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+          <Col span={12}>
+            <ScheduleForm categories={this.state.calendars} onSubmit={this.handleSubmit} />
+          </Col>
+          <Col span={12}>
+            <ScheduleTable items={this.state.schedules} />
+          </Col>
+        </Row>
       </Layout>
     );
   }

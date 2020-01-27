@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ScheduleForm.scss';
 
-import { Form, Input, DatePicker, Checkbox, Button } from 'antd';
+import { Form, Input, DatePicker, Checkbox, Button, Select } from 'antd';
 
 import useToggle from 'hooks/useToggle';
 import useInput from 'hooks/useInput';
@@ -19,6 +19,11 @@ function ScheduleForm(props) {
   const { value: location, onChange: onLocationChange } = useInput();
   const [dates, setDates] = useState({ start: '', end: '' });
   const [showTime, toggle] = useToggle(true);
+  const [category, setCategory] = useState('');
+
+  const handleCategoryChange = value => {
+    setCategory(value);
+  };
 
   const handleDateChange = (dates, dateStrings) => {
     setDates({ start: dateStrings[0], end: dateStrings[1] });
@@ -26,6 +31,7 @@ function ScheduleForm(props) {
 
   const handleClick = () => {
     props.onSubmit({
+      calendarId: category,
       title,
       body,
       location,
@@ -39,6 +45,13 @@ function ScheduleForm(props) {
   return (
     <div className={styles.ScheduleForm}>
       <Form>
+        <Form.Item required>
+          <Select placeholder="카테고리" onChange={handleCategoryChange}>
+            {props.categories.map(category => (
+              <Select.Option value={category.id}>{category.name}</Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
         <Form.Item>
           <Input placeholder="일정명" value={title} onChange={onTitleChange} />
         </Form.Item>
@@ -66,6 +79,7 @@ function ScheduleForm(props) {
 }
 
 ScheduleForm.propTypes = {
+  categories: [],
   onSubmit: PropTypes.func,
 };
 ScheduleForm.defaultProps = {
