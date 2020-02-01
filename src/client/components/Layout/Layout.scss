@@ -1,5 +1,5 @@
 .Layout {
-  height: 100vh;
+  min-height: 100vh !important;
   & &__header {
     display: flex;
     align-items: center;
@@ -12,7 +12,8 @@
       line-height: 64px;
     }
   }
-  &__content {
+  & &__content {
+    flex-shrink: 0;
     padding-top: 24px;
   }
 }
