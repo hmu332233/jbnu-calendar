@@ -8,7 +8,7 @@ import { Row, Col } from 'antd';
 
 import Layout from 'components/Layout';
 import ScheduleForm from 'components/ScheduleForm';
-import ScheduleTable from 'components/ScheduleTable';
+import ScheduleList from 'components/ScheduleList';
 
 class ScheduleRegister extends React.Component {
   constructor(props) {
@@ -56,12 +56,12 @@ class ScheduleRegister extends React.Component {
   render() {
     return (
       <Layout activePage="schedules">
-        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          <Col span={12}>
+        <Row className={styles.ScheduleRegister__row} gutter={24}>
+          <Col span={24}>
             <ScheduleForm categories={this.state.calendars} onSubmit={this.handleSubmit} />
           </Col>
-          <Col span={12}>
-            <ScheduleTable items={this.state.schedules} />
+          <Col span={24}>
+            <ScheduleList items={this.state.schedules} />
           </Col>
         </Row>
       </Layout>
