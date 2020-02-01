@@ -3,7 +3,7 @@ const dayjs = require('dayjs');
 
 exports.CONSTANTS = CONSTANTS;
 
-exports.create = ({ calendarId, title, body, location, url, start, end, category }) => {
+exports.create = ({ calendarId, title, body, location, url, start, end, category, show = false }) => {
   return db.schedules.create({
     calendarId,
     title,
@@ -13,7 +13,7 @@ exports.create = ({ calendarId, title, body, location, url, start, end, category
     start: dayjs(start).toDate(),
     end: dayjs(end).toDate(),
     category,
-    show: true,
+    show,
   });
 };
 
@@ -33,6 +33,7 @@ exports.getSchedulesWithin1Month = ({ date = new Date() } = {}) => {
   return db.schedules
     .find({
       $or: [{ start: betweenQuery }, { end: betweenQuery }],
+      show: true,
     })
     .lean();
 };

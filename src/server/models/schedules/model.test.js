@@ -23,7 +23,7 @@ describe('create', () => {
     expect(schedule).toEqual(newSchedule);
   });
 
-  test('category와 show가 없을때 없을때 allDay와 true로 저장이 됨', async () => {
+  test('category와 show가 없을때 없을때 allDay와 false로 저장이 됨', async () => {
     const newSchedule = {
       title: 'createTest2',
       body: 'createTest2',
@@ -37,15 +37,15 @@ describe('create', () => {
 
     const schedule = await db.schedules.findOne({ title: 'createTest2' }, { __v: 0, _id: 0 }).lean();
     expect(schedule.category).toEqual(CONSTANTS.CATEGORY.ALLDAY);
-    expect(schedule.show).toEqual(true);
+    expect(schedule.show).toEqual(false);
   });
 });
 
 describe('getSchedulesWithin1Month', () => {
   beforeAll(async () => {
-    await db.schedules.create({ title: 'test', start: new Date('2020-01-15'), end: new Date('2020-01-15') });
-    await db.schedules.create({ title: 'test', start: new Date('2019-12-12'), end: new Date('2020-01-15') });
-    await db.schedules.create({ title: 'test', start: new Date('2019-11-20'), end: new Date('2020-11-30') });
+    await db.schedules.create({ title: 'test', start: new Date('2020-01-15'), end: new Date('2020-01-15'), show: true });
+    await db.schedules.create({ title: 'test', start: new Date('2019-12-12'), end: new Date('2020-01-15'), show: true });
+    await db.schedules.create({ title: 'test', start: new Date('2019-11-20'), end: new Date('2020-11-30'), show: true });
   });
 
   test('1월의 이벤트만 가져올때, 2개의 이벤트를 가져와야함', async () => {
