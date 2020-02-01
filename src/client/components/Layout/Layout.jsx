@@ -16,9 +16,9 @@ const HEADER_ITEMS = [
     text: '캘린더',
   },
   {
-    key: 'schedules',
-    path: '/schedules',
-    text: '일정 등록',
+    key: 'request',
+    path: '/request',
+    text: '일정 등록 요청',
   },
 ];
 

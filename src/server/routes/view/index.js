@@ -4,7 +4,7 @@ const path = require('path');
 
 const { checkView } = require('../../middlewares/auth');
 
-router.get(['/', '/signin'], (req, res) => {
+router.get(['/', '/signin', '/request'], (req, res) => {
   res.sendFile(path.join(__dirname + './../../../../dist/index.html'));
 });
 
