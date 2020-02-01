@@ -21,11 +21,21 @@ class MainCalendar extends React.Component {
     this.calendar = new Calendar(`#${this.props.id}`, {
       defaultView: 'month',
       taskView: false,
-      useCreationPopup: true,
+      useCreationPopup: false,
       useDetailPopup: true,
       usageStatistics: false,
       isReadOnly: this.props.isReadOnly,
       calendars: this.props.calendars,
+      template: {
+        popupDetailBody: function(schedule) {
+          return `
+            <div>
+              ${schedule.raw.url ? `<a href="${schedule.raw.url}" target="_blank">${schedule.raw.url}</a>` : ''}
+              <p style="white-space: pre-line">${schedule.body}</p>
+            </div>
+          `;
+        },
+      },
     });
 
     this.calendar.createSchedules(this.props.schedules);
@@ -64,7 +74,7 @@ MainCalendar.propTypes = {
 };
 MainCalendar.defaultProps = {
   id: 'calendar',
-  isReadOnly: false,
+  isReadOnly: true,
   calendars: [
     {
       id: 'AcademicSchedule',
