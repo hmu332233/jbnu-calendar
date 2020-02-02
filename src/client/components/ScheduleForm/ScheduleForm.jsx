@@ -38,7 +38,7 @@ function ScheduleForm(props) {
 
   const handleClick = () => {
     if (!category || !title || !dates.start || !dates.end) {
-      alert('(필수)를 모두 체워주세요.');
+      alert('(필수)를 모두 채워주세요.');
       return;
     }
 
