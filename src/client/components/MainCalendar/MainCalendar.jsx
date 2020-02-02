@@ -9,6 +9,7 @@ import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
 
 import CalendarCheckList from 'components/CalendarCheckList';
+import CalendarCheckDrawer from 'components/CalendarCheckDrawer';
 
 class MainCalendar extends React.Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class MainCalendar extends React.Component {
   render() {
     return (
       <div className={styles.MainCalendar}>
-        {this.props.calendars.length > 0 && <CalendarCheckList items={this.props.calendars} onChange={this.handleCheckBox} />}
+        {this.props.calendars.length > 0 && <CalendarCheckDrawer selected={this.state.selectedCalendar} items={this.props.calendars} onChange={this.handleCheckBox} />}
         <div id={this.props.id} />
       </div>
     );

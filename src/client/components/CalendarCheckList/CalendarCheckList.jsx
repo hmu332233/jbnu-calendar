@@ -13,13 +13,11 @@ function CalendarCheckList(props) {
     }, []);
   return (
     <Checkbox.Group className={styles.CalendarCheckList} defaultValue={defaultValue} onChange={props.onChange}>
-      <Row>
-        {props.items.map(item => (
-          <Col key={item.id} span={4}>
-            <Checkbox value={item.id}>{item.name}</Checkbox>
-          </Col>
-        ))}
-      </Row>
+      {props.items.map(item => (
+        <Checkbox className={styles.CalendarCheckList__checkbox} key={item.id} value={item.id}>
+          {item.name}
+        </Checkbox>
+      ))}
     </Checkbox.Group>
   );
 }
@@ -29,6 +27,7 @@ CalendarCheckList.propTypes = {
   onChange: PropTypes.func,
 };
 CalendarCheckList.defaultProps = {
+  items: [],
   onChange: v => v,
 };
 
