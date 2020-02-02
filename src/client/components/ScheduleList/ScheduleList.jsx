@@ -2,14 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ScheduleList.scss';
 
-import { List, Avatar, Icon } from 'antd';
+import { List } from 'antd';
 
-const IconText = ({ type, text }) => (
-  <span>
-    <Icon type={type} style={{ marginRight: 8 }} />
-    {text}
-  </span>
-);
+import ScheduleListItem from 'components/ScheduleListItem';
 
 function ScheduleList(props) {
   return (
@@ -23,12 +18,7 @@ function ScheduleList(props) {
       }}
       bordered
       dataSource={props.items}
-      renderItem={item => (
-        <List.Item key={item.title} actions={[<IconText type="edit" text="수정" key="list-edit" />, <IconText type="delete" text="삭제" key="list-delete" />]}>
-          <List.Item.Meta title={item.title} description={item.category === 'time' ? `${item.end}` : `${item.start} - ${item.end}`} />
-          {item.body}
-        </List.Item>
-      )}
+      renderItem={item => <ScheduleListItem key={item._id} title={item.title} description={item.category === 'time' ? `${item.end}` : `${item.start} - ${item.end}`} content={item.body} />}
     />
   );
 }
