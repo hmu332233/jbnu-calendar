@@ -13,13 +13,20 @@ const DATE_TYPE = {
 };
 
 function ScheduleForm(props) {
-  const { value: title, onChange: onTitleChange } = useInput();
-  const { value: body, onChange: onBodyChange } = useInput();
-  const { value: url, onChange: onUrlChange } = useInput();
-  const { value: location, onChange: onLocationChange } = useInput();
+  const { value: title, onChange: onTitleChange, setValue: setTitle } = useInput();
+  const { value: body, onChange: onBodyChange, setValue: setBody } = useInput();
+  const { value: url, onChange: onUrlChange, setValue: setUrl } = useInput();
+  const { value: location, onChange: onLocationChange, setValue: setLocation } = useInput();
   const [dates, setDates] = useState({ start: '', end: '' });
   const [showTime, toggle] = useToggle(false);
   const [category, setCategory] = useState('');
+
+  const reset = () => {
+    setTitle('');
+    setBody('');
+    setLocation('');
+    setUrl('');
+  };
 
   const handleCategoryChange = value => {
     setCategory(value);
@@ -40,6 +47,7 @@ function ScheduleForm(props) {
       end: dates.end,
       allDay: !showTime,
     });
+    reset();
   };
 
   return (

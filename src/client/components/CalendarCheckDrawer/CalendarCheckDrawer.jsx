@@ -12,7 +12,10 @@ function CalendarCheckDrawer(props) {
   const [isOpen, toggle] = useToggle();
   return (
     <div className={styles.CalendarCheckDrawer}>
-      <Button onClick={toggle}>일정 필터</Button>
+      <div className={styles.CalendarCheckDrawer__row}>
+        <Button onClick={toggle}>일정 필터</Button>
+        <div className={styles.CalendarCheckDrawer__row__text}>{props.text}</div>
+      </div>
       <Drawer title="일정 필터" placement="left" visible={isOpen} onClose={toggle}>
         <CalendarCheckList items={props.items} onChange={props.onChange} />
       </Drawer>
@@ -21,10 +24,12 @@ function CalendarCheckDrawer(props) {
 }
 
 CalendarCheckDrawer.propTypes = {
+  text: PropTypes.string,
   items: PropTypes.array,
   onChange: PropTypes.func,
 };
 CalendarCheckDrawer.defaultProps = {
+  text: '',
   items: [],
   onChange: v => v,
 };

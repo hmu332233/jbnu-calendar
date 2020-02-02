@@ -8,14 +8,12 @@ import { Row, Col } from 'antd';
 
 import Layout from 'components/Layout';
 import ScheduleForm from 'components/ScheduleForm';
-import ScheduleTable from 'components/ScheduleTable';
 
 class ScheduleRequest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       calendars: [],
-      schedules: [],
     };
   }
 
@@ -41,8 +39,7 @@ class ScheduleRequest extends React.Component {
       allDay,
     };
     axios.post('/api/v1/schedules', data).then(res => {
-      const newSchedule = res.data;
-      this.setState({ schedules: [...this.state.schedules, newSchedule] });
+      alert(`등록 요청 완료되었습니다 - ${title}`);
     });
   };
 

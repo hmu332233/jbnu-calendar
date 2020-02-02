@@ -15,7 +15,7 @@ class MainCalendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedCalendar: {},
+      selectedCalendars: {},
     };
     this.calendar = null;
   }
@@ -45,23 +45,23 @@ class MainCalendar extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.selectedCalendar !== this.state.selectedCalendar || prevProps.schedules !== this.props.schedules) {
+    if (prevState.selectedCalendars !== this.state.selectedCalendars || prevProps.schedules !== this.props.schedules) {
       this.resetSchedules();
     }
 
     if (prevProps.calendars !== this.props.calendars) {
-      const selectedCalendar = this.props.calendars.reduce((obj, calendar) => {
+      const selectedCalendars = this.props.calendars.reduce((obj, calendar) => {
         obj[calendar.id] = calendar.defaultChecked;
         return obj;
       }, {});
-      this.setState({ selectedCalendar });
+      this.setState({ selectedCalendars });
       this.calendar.setCalendars(this.props.calendars);
     }
   }
 
   resetSchedules = () => {
     const schedules = this.props.schedules.filter(schedule => {
-      return this.state.selectedCalendar[schedule.calendarId];
+      return this.state.selectedCalendars[schedule.calendarId];
     });
     this.calendar.clear();
     this.calendar.createSchedules(schedules, true);
@@ -69,17 +69,21 @@ class MainCalendar extends React.Component {
   };
 
   handleCheckBox = values => {
-    const selectedCalendar = values.reduce((obj, value) => {
+    const selectedCalendars = values.reduce((obj, value) => {
       obj[value] = true;
       return obj;
     }, {});
-    this.setState({ selectedCalendar });
+    this.setState({ selectedCalendars });
   };
 
   render() {
+    const drawerText = this.props.calendars
+      .filter(calendar => this.state.selectedCalendars[calendar.id])
+      .map(calendar => calendar.name)
+      .join(', ');
     return (
       <div className={styles.MainCalendar}>
-        {this.props.calendars.length > 0 && <CalendarCheckDrawer selected={this.state.selectedCalendar} items={this.props.calendars} onChange={this.handleCheckBox} />}
+        {this.props.calendars.length > 0 && <CalendarCheckDrawer text={`필터링 중- ${drawerText}`} items={this.props.calendars} onChange={this.handleCheckBox} />}
         <div id={this.props.id} />
       </div>
     );
