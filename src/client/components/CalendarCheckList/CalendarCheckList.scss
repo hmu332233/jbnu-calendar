@@ -1,0 +1,11 @@
+.CalendarCheckList {
+  display: flex;
+  flex-direction: column;
+  &__checkbox {
+    margin-top: 8px;
+    margin-left: 0 !important;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.Layout {
+  min-height: 100vh !important;
+  & &__header {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    &__title {
+      margin-bottom: 0;
+    }
+    &__menu {
+      margin-left: auto;
+      line-height: 64px;
+    }
+  }
+  & &__content {
+    flex-shrink: 0;
+    padding-top: 24px;
+  }
+}
