@@ -8,13 +8,15 @@ import 'tui-calendar/dist/tui-calendar.css';
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
 
+import CalendarCheckList from 'components/CalendarCheckList';
+
 class MainCalendar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      selectedCalendar: {},
+    };
     this.calendar = null;
-
-    this.resetSchedules = this.resetSchedules.bind(this);
   }
 
   componentDidMount() {
@@ -42,24 +44,41 @@ class MainCalendar extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.schedules !== this.props.schedules) {
+    if (prevState.selectedCalendar !== this.state.selectedCalendar || prevProps.schedules !== this.props.schedules) {
       this.resetSchedules();
     }
 
     if (prevProps.calendars !== this.props.calendars) {
+      const selectedCalendar = this.props.calendars.reduce((obj, calendar) => {
+        obj[calendar.id] = calendar.defaultChecked;
+        return obj;
+      }, {});
+      this.setState({ selectedCalendar });
       this.calendar.setCalendars(this.props.calendars);
     }
   }
 
-  resetSchedules() {
+  resetSchedules = () => {
+    const schedules = this.props.schedules.filter(schedule => {
+      return this.state.selectedCalendar[schedule.calendarId];
+    });
     this.calendar.clear();
-    this.calendar.createSchedules(this.props.schedules, true);
+    this.calendar.createSchedules(schedules, true);
     this.calendar.render();
-  }
+  };
+
+  handleCheckBox = values => {
+    const selectedCalendar = values.reduce((obj, value) => {
+      obj[value] = true;
+      return obj;
+    }, {});
+    this.setState({ selectedCalendar });
+  };
 
   render() {
     return (
       <div className={styles.MainCalendar}>
+        {this.props.calendars.length > 0 && <CalendarCheckList items={this.props.calendars} onChange={this.handleCheckBox} />}
         <div id={this.props.id} />
       </div>
     );
