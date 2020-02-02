@@ -4,12 +4,11 @@ const path = require('path');
 
 const { checkView } = require('../../middlewares/auth');
 
-router.get(['/', '/signin', '/request'], (req, res) => {
-  res.sendFile(path.join(__dirname + './../../../../dist/index.html'));
-});
+const PUBLIC_DIR = process.env.NODE_ENV === 'development' ? 'dist' : 'build';
 
-router.get(['/schedules'], checkView(), (req, res) => {
-  res.sendFile(path.join(__dirname + './../../../../dist/index.html'));
-});
+const goToIndexHtml = (req, res) => res.sendFile(path.join(__dirname + `./../../../../${PUBLIC_DIR}/index.html`));
+
+router.get(['/', '/signin', '/request'], goToIndexHtml);
+router.get(['/schedules'], checkView(), goToIndexHtml);
 
 module.exports = router;

@@ -23,11 +23,15 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(logger('dev'));
 app.use(middleware.logger.params);
 app.use(middleware.logger.mongooseDebug);
 
-app.use(express.static('dist'));
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  app.use(logger('dev'));
+  app.use(express.static('dist'));
+} else {
+  app.use('/assets', express.static('build'));
+}
 
 app.use('/api', require('./routes/api'));
 app.use('/', require('./routes/view'));
