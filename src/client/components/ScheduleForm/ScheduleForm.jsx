@@ -37,6 +37,11 @@ function ScheduleForm(props) {
   };
 
   const handleClick = () => {
+    if (!category || !title || !dates.start || !dates.end) {
+      alert('(필수)를 모두 체워주세요.');
+      return;
+    }
+
     props.onSubmit({
       calendarId: category,
       title,
@@ -54,20 +59,26 @@ function ScheduleForm(props) {
     <div className={styles.ScheduleForm}>
       <Form>
         <Form.Item required>
-          <Select placeholder="카테고리" onChange={handleCategoryChange}>
+          <Select placeholder="카테고리 (필수)" onChange={handleCategoryChange}>
             {props.categories.map(category => (
               <Select.Option value={category.id}>{category.name}</Select.Option>
             ))}
           </Select>
         </Form.Item>
         <Form.Item>
-          <Input placeholder="일정명" value={title} onChange={onTitleChange} />
+          <Input placeholder="일정명 (필수)" value={title} onChange={onTitleChange} />
         </Form.Item>
         <Form.Item>
           <Input.TextArea placeholder="설명" value={body} onChange={onBodyChange} />
         </Form.Item>
         <Form.Item>
-          <DatePicker.RangePicker style={{ width: '100%' }} showTime={showTime} format={showTime ? DATE_TYPE.DATE : DATE_TYPE.TIME} onChange={handleDateChange} placeholder={['시작일', '종료일']} />
+          <DatePicker.RangePicker
+            style={{ width: '100%' }}
+            showTime={showTime}
+            format={showTime ? DATE_TYPE.DATE : DATE_TYPE.TIME}
+            onChange={handleDateChange}
+            placeholder={['시작일 (필수)', '종료일 (필수)']}
+          />
           <Checkbox checked={!showTime} onChange={toggle}>
             종일
           </Checkbox>
