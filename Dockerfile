@@ -19,4 +19,4 @@ ENV NODE_ENV production
 # 타임존 변경
 RUN bash -c 'echo "Asia/Seoul" > /etc/timezone' && rm /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
-CMD npm start:server
+CMD npm run start:server
