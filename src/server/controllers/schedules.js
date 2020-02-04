@@ -31,11 +31,11 @@ exports.getMySchedules = async (req, res, next) => {
   }
 };
 
-exports.getSchedulesWithin1Month = async (req, res, next) => {
+exports.getSchedulesWithin3Month = async (req, res, next) => {
   const { date } = req.query;
   try {
     const calendars = await Calendars.getAllCalendars();
-    const schedules = await Schedules.getSchedulesWithin1Month({ date });
+    const schedules = await Schedules.getSchedulesWithin3Month({ date });
     res.json({
       calendars,
       schedules: schedules.map(v => ({ ...v, id: v._id })),
