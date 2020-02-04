@@ -8,7 +8,7 @@ import 'tui-calendar/dist/tui-calendar.css';
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
 
-import CalendarCheckList from 'components/CalendarCheckList';
+import CalendarNavagation from 'components/CalendarNavagation';
 import CalendarCheckDrawer from 'components/CalendarCheckDrawer';
 
 class MainCalendar extends React.Component {
@@ -76,6 +76,21 @@ class MainCalendar extends React.Component {
     this.setState({ selectedCalendars });
   };
 
+  handleTodayClick = () => {
+    this.calendar.today();
+    this.props.onChange(this.calendar.getDate().toDate());
+  };
+
+  handlePrevClick = () => {
+    this.calendar.prev();
+    this.props.onChange(this.calendar.getDate().toDate());
+  };
+
+  handleNextClick = () => {
+    this.calendar.next();
+    this.props.onChange(this.calendar.getDate().toDate());
+  };
+
   render() {
     const drawerText = this.props.calendars
       .filter(calendar => this.state.selectedCalendars[calendar.id])
@@ -83,7 +98,10 @@ class MainCalendar extends React.Component {
       .join(', ');
     return (
       <div className={styles.MainCalendar}>
-        {this.props.calendars.length > 0 && <CalendarCheckDrawer text={`필터링 중- ${drawerText}`} items={this.props.calendars} onChange={this.handleCheckBox} />}
+        <div className={styles.MainCalendar__header}>
+          {this.props.calendars.length > 0 && <CalendarCheckDrawer text={`필터링 중- ${drawerText}`} items={this.props.calendars} onChange={this.handleCheckBox} />}
+          <CalendarNavagation className={styles.MainCalendar__header__navigation} onTodayClick={this.handleTodayClick} onPrevClick={this.handlePrevClick} onNextClick={this.handleNextClick} />
+        </div>
         <div id={this.props.id} />
       </div>
     );
@@ -95,6 +113,7 @@ MainCalendar.propTypes = {
   isReadOnly: PropTypes.bool,
   calendars: PropTypes.array,
   schedule: PropTypes.array,
+  handleDateChange: PropTypes.func,
 };
 MainCalendar.defaultProps = {
   id: 'calendar',
@@ -192,6 +211,7 @@ MainCalendar.defaultProps = {
       borderColor: '#ff4040',
     },
   ],
+  handleDateChange: v => v,
 };
 
 export default MainCalendar;
