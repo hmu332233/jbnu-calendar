@@ -37,3 +37,22 @@ exports.getSchedulesWithin1Month = ({ date = new Date() } = {}) => {
     })
     .lean();
 };
+
+exports.getSchedulesWithin3Month = ({ date = new Date() } = {}) => {
+  const startDate = dayjs(date)
+    .startOf('month')
+    .subtract(1, 'month')
+    .toDate();
+  const endDate = dayjs(date)
+    .endOf('month')
+    .add(1, 'month')
+    .toDate();
+
+  const betweenQuery = { $gte: startDate, $lt: endDate };
+  return db.schedules
+    .find({
+      $or: [{ start: betweenQuery }, { end: betweenQuery }],
+      show: true,
+    })
+    .lean();
+};
