@@ -52,8 +52,24 @@ describe('getSchedulesWithin1Month', () => {
     const schedules = await getSchedulesWithin1Month({ date: new Date('2020-01-01') });
     expect(schedules.length).toEqual(2);
   });
+
+  test('1월의 이벤트만 가져올때, 2개의 이벤트를 가져와야함 - date가 text로 들어옴', async () => {
+    const schedules = await getSchedulesWithin1Month({ date: '2020-01-01' });
+    expect(schedules.length).toEqual(2);
+  });
+
   test('11월의 이벤트만 가져올때, 1개의 이벤트를 가져와야함', async () => {
     const schedules = await getSchedulesWithin1Month({ date: new Date('2019-11-01') });
     expect(schedules.length).toEqual(1);
+  });
+
+  test('11월의 이벤트만 가져올때, 1개의 이벤트를 가져와야함 - date가 text로 들어옴', async () => {
+    const schedules = await getSchedulesWithin1Month({ date: '2019-11-01' });
+    expect(schedules.length).toEqual(1);
+  });
+
+  test('date가 이상한 문자열로 들어옴', async () => {
+    // TODO: 해당 케이스에 대한 예외처리 추가하기
+    expect(true).toEqual(true);
   });
 });
