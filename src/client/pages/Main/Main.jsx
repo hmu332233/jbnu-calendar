@@ -24,7 +24,7 @@ class Main extends React.Component {
     axios.get('/api/v1/schedules', { params: { date } }).then(res => {
       this.setState({
         calendars: res.data.calendars,
-        schedules: res.data.schedules.map(schedule => ({ ...schedule, raw: schedule })),
+        schedules: res.data.schedules.map(schedule => ({ ...schedule, start: new Date(schedule.start), end: new Date(schedule.end), raw: schedule })),
       });
     });
   };
