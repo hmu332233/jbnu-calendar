@@ -78,14 +78,17 @@ class MainCalendar extends React.Component {
 
   handleTodayClick = () => {
     this.calendar.today();
+    this.props.onChange(this.calendar.getDate().toDate());
   };
 
   handlePrevClick = () => {
     this.calendar.prev();
+    this.props.onChange(this.calendar.getDate().toDate());
   };
 
   handleNextClick = () => {
     this.calendar.next();
+    this.props.onChange(this.calendar.getDate().toDate());
   };
 
   render() {
@@ -110,6 +113,7 @@ MainCalendar.propTypes = {
   isReadOnly: PropTypes.bool,
   calendars: PropTypes.array,
   schedule: PropTypes.array,
+  handleDateChange: PropTypes.func,
 };
 MainCalendar.defaultProps = {
   id: 'calendar',
@@ -207,6 +211,7 @@ MainCalendar.defaultProps = {
       borderColor: '#ff4040',
     },
   ],
+  handleDateChange: v => v,
 };
 
 export default MainCalendar;

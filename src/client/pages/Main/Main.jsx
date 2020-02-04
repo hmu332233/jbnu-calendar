@@ -20,8 +20,8 @@ class Main extends React.Component {
     this.fetchSchedules();
   };
 
-  fetchSchedules = () => {
-    axios.get('/api/v1/schedules').then(res => {
+  fetchSchedules = date => {
+    axios.get('/api/v1/schedules', { params: { date } }).then(res => {
       this.setState({
         calendars: res.data.calendars,
         schedules: res.data.schedules.map(schedule => ({ ...schedule, raw: schedule })),
@@ -29,10 +29,14 @@ class Main extends React.Component {
     });
   };
 
+  handleDateChange = date => {
+    this.fetchSchedules(date);
+  };
+
   render() {
     return (
       <Layout>
-        <MainCalendar calendars={this.state.calendars} schedules={this.state.schedules} />
+        <MainCalendar calendars={this.state.calendars} schedules={this.state.schedules} onChange={this.handleDateChange} />
       </Layout>
     );
   }
