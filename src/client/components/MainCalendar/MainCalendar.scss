@@ -5,8 +5,16 @@
     padding-left: 16px;
     padding-right: 16px;
     margin-bottom: 16px;
-    &__navigation {
-      margin-left: auto;
+    & &__navigationCol {
+      display: flex;
+      &__date {
+        margin-left: auto;
+        margin-bottom: 0;
+      }
+      &__navigation {
+        margin-left: 16px;
+      }
     }
+    
   }
 }

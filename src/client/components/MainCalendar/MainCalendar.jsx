@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './MainCalendar.scss';
 
+import { Row, Col } from 'antd';
+
 import Calendar from 'tui-calendar'; /* ES6 */
 import 'tui-calendar/dist/tui-calendar.css';
 
@@ -15,6 +17,7 @@ class MainCalendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentDate: new Date(),
       selectedCalendars: {},
     };
     this.calendar = null;
@@ -78,30 +81,47 @@ class MainCalendar extends React.Component {
 
   handleTodayClick = () => {
     this.calendar.today();
-    this.props.onChange(this.calendar.getDate().toDate());
+    const currentDate = this.calendar.getDate().toDate();
+    this.setState({ currentDate });
+    this.props.onChange(currentDate);
   };
 
   handlePrevClick = () => {
     this.calendar.prev();
-    this.props.onChange(this.calendar.getDate().toDate());
+    const currentDate = this.calendar.getDate().toDate();
+    this.setState({ currentDate });
+    this.props.onChange(currentDate);
   };
 
   handleNextClick = () => {
     this.calendar.next();
-    this.props.onChange(this.calendar.getDate().toDate());
+    const currentDate = this.calendar.getDate().toDate();
+    this.setState({ currentDate });
+    this.props.onChange(currentDate);
   };
 
   render() {
+    const dateText = `${this.state.currentDate.getFullYear()}.${this.state.currentDate.getMonth() + 1}`;
     const drawerText = this.props.calendars
       .filter(calendar => this.state.selectedCalendars[calendar.id])
       .map(calendar => calendar.name)
       .join(', ');
     return (
       <div className={styles.MainCalendar}>
-        <div className={styles.MainCalendar__header}>
-          {this.props.calendars.length > 0 && <CalendarCheckDrawer text={`필터링 중- ${drawerText}`} items={this.props.calendars} onChange={this.handleCheckBox} />}
-          <CalendarNavagation className={styles.MainCalendar__header__navigation} onTodayClick={this.handleTodayClick} onPrevClick={this.handlePrevClick} onNextClick={this.handleNextClick} />
-        </div>
+        <Row className={styles.MainCalendar__header} gutter={24} type="flex" justify="space-between">
+          <Col xs={24} md={12}>
+            {this.props.calendars.length > 0 && <CalendarCheckDrawer text={`필터링 중- ${drawerText}`} items={this.props.calendars} onChange={this.handleCheckBox} />}
+          </Col>
+          <Col className={styles.MainCalendar__header__navigationCol} xs={24} md={12}>
+            <h1 className={styles.MainCalendar__header__navigationCol__date}>{dateText}</h1>
+            <CalendarNavagation
+              className={styles.MainCalendar__header__navigationCol__navigation}
+              onTodayClick={this.handleTodayClick}
+              onPrevClick={this.handlePrevClick}
+              onNextClick={this.handleNextClick}
+            />
+          </Col>
+        </Row>
         <div id={this.props.id} />
       </div>
     );

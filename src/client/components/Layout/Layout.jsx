@@ -11,6 +11,11 @@ const { Header, Content, Footer } = AntdLayout;
 
 const HEADER_ITEMS = [
   {
+    key: 'about',
+    path: '/about',
+    text: '소개',
+  },
+  {
     key: 'calendar',
     path: '/',
     text: '캘린더',
