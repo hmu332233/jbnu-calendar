@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-const Main = lazy(() => import('pages/Main'));
+import Main from 'pages/Main';
 const About = lazy(() => import('pages/About'));
 const ScheduleRegister = lazy(() => import('pages/ScheduleRegister'));
 const ScheduleRequest = lazy(() => import('pages/ScheduleRequest'));
