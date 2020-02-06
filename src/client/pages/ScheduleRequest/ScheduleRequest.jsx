@@ -4,7 +4,8 @@ import styles from './ScheduleRequest.scss';
 
 import axios from 'axios';
 
-import { Row, Col } from 'antd';
+import { Typography, Row, Col } from 'antd';
+const { Title, Paragraph, Text } = Typography;
 
 import Layout from 'components/Layout';
 import ScheduleForm from 'components/ScheduleForm';
@@ -48,20 +49,27 @@ class ScheduleRequest extends React.Component {
       <Layout activePage="request">
         <Row className={styles.ScheduleRequest__row} gutter={24} type="flex" justify="center">
           <Col xs={24} md={12} lg={10} xl={8}>
-            <p>
-              전북대 캘린더는 전북대학교의 모든 일정을 모아보는 캘린더입니다.
-              <br />
-              학교 공식 홈페이지에서는 알 수 없는 축제 기간, 동아리 모집 기간, 간식 사업 날짜 등등
-              <br />
-              학교에 관련된 모든 일정을 모으는 것을 목표로 하고 있습니다.
-            </p>
-            <p>
-              등록되지 않은 학교의 일정이 있다면
-              <br />
-              언제든지 해당 양식을 이용해 등록 요청을 해주세요!
-              <br />
-              전북대 캘린더는 모두와 함께 만들어갑니다.
-            </p>
+            <Typography>
+              <Title level={3}>일정 등록 요청</Title>
+              <Paragraph>
+                전북대 캘린더는 전북대학교의 모든 일정을 모아보는 캘린더입니다. <br />
+              </Paragraph>
+              <Paragraph>
+                축제 기간, 동아리 모집 기간, 동아리 공연 홍보등 등록되지 않은 학교의 일정이 있다면 <br />
+                언제든지 해당 양식을 이용해 등록 요청을 해주세요! <br />
+                등록된 일정은 확인 후 등록 승인해드립니다!
+              </Paragraph>
+              <Title level={3}>주의 사항</Title>
+              <Paragraph>
+                다음의 사항은 필수입니다.
+                <ul>
+                  <li>카테고리</li>
+                  <li>일정명</li>
+                  <li>시작일</li>
+                  <li>종료일</li>
+                </ul>
+              </Paragraph>
+            </Typography>
           </Col>
           <Col xs={24} md={12} lg={10} xl={8}>
             <ScheduleForm categories={this.state.calendars} onSubmit={this.handleSubmit} />
