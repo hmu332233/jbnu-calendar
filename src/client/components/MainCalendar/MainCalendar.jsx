@@ -5,10 +5,7 @@ import styles from './MainCalendar.scss';
 import { Row, Col } from 'antd';
 
 import Calendar from 'tui-calendar'; /* ES6 */
-import 'tui-calendar/dist/tui-calendar.css';
-
-import 'tui-date-picker/dist/tui-date-picker.css';
-import 'tui-time-picker/dist/tui-time-picker.css';
+import 'tui-calendar/dist/tui-calendar.min.css';
 
 import CalendarNavagation from 'components/CalendarNavagation';
 import CalendarCheckDrawer from 'components/CalendarCheckDrawer';
