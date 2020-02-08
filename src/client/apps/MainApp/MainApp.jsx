@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import GA from 'components/GA';
 import Main from 'pages/Main';
 const About = lazy(() => import('pages/About'));
 const ScheduleRegister = lazy(() => import('pages/ScheduleRegister'));
@@ -21,6 +22,7 @@ function MainApp(props) {
           <Route path="/signin" exact component={SignIn} />
         </Switch>
       </Suspense>
+      <GA />
     </Router>
   );
 }

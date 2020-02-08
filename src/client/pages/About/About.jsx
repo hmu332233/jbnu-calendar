@@ -11,7 +11,7 @@ const { Title, Paragraph, Text } = Typography;
 function About(props) {
   return (
     <Layout activePage="about">
-      <Row gutter={24} type="flex" justify="center">
+      <Row type="flex" justify="center">
         <Col xs={22} md={20} lg={16} xl={12}>
           <Typography>
             <Title level={2}>모두가 함께 만드는 전북대 캘린더</Title>
