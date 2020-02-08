@@ -16,14 +16,14 @@ const HEADER_ITEMS = [
     text: '소개',
   },
   {
+    key: 'request',
+    path: '/request',
+    text: '일정 등록',
+  },
+  {
     key: 'calendar',
     path: '/',
     text: '캘린더',
-  },
-  {
-    key: 'request',
-    path: '/request',
-    text: '일정 등록 요청',
   },
 ];
 
@@ -69,7 +69,7 @@ function Layout(props) {
         </div>
       </Header>
       <Content className={styles.Layout__content}>{props.children}</Content>
-      <Footer>© 2019. minung.han</Footer>
+      <Footer className={styles.Layout__footer}>© 2020. minung.han</Footer>
     </AntdLayout>
   );
 }
