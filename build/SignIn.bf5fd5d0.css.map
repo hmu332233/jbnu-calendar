@@ -1,1 +1,0 @@
-{"version":3,"sources":["pages/SignIn/SignIn.scss"],"names":[],"mappings":"AAAA,eACE,YAAA,CACA,sBAAA,CACA,kBAAA,CACA,aAEA,qBACE","file":"SignIn.bf5fd5d0.css","sourceRoot":"../src/client","sourcesContent":[".SignIn {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100vh;\n\n  &__form {\n    max-width: 600px;\n  }\n}\n"]}

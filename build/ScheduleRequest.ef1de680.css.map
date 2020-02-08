@@ -1,1 +1,0 @@
-{"version":3,"sources":["pages/ScheduleRequest/ScheduleRequest.scss"],"names":[],"mappings":"AACE,6BACE,iBAAA,CACA","file":"ScheduleRequest.ef1de680.css","sourceRoot":"../src/client","sourcesContent":[".ScheduleRequest {\n  &__row {\n    padding-left: 16px;\n    padding-right: 16px;\n  }\n}"]}
