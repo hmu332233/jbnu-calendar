@@ -105,7 +105,7 @@ class MainCalendar extends React.Component {
       .join(', ');
     return (
       <div className={styles.MainCalendar}>
-        <Row className={styles.MainCalendar__header} gutter={24} type="flex" justify="space-between">
+        <Row className={styles.MainCalendar__header} type="flex" justify="space-between">
           <Col className={styles.MainCalendar__header__filterCol} xs={24} md={12}>
             {this.props.calendars.length > 0 && <CalendarCheckDrawer text={`필터링 중- ${drawerText}`} items={this.props.calendars} onChange={this.handleCheckBox} />}
           </Col>
