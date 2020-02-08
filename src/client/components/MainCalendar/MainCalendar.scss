@@ -4,9 +4,14 @@
     align-items: center;
     padding-left: 16px;
     padding-right: 16px;
+    margin-top: -8px;
     margin-bottom: 16px;
+    & &__filterCol {
+      margin-top: 8px;
+    }
     & &__navigationCol {
       display: flex;
+      margin-top: 8px;
       &__date {
         margin-left: auto;
         margin-bottom: 0;
