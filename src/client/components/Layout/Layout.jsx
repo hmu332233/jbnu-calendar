@@ -41,7 +41,7 @@ const MenuPopover = props => {
   );
 
   return (
-    <Popover className={props.className} content={menu} trigger="click" placement="bottom" visible={isOpen} onVisibleChange={setIsOpen}>
+    <Popover className={props.className} content={menu} trigger="click" placement="bottomRight" visible={isOpen} onVisibleChange={setIsOpen}>
       <Icon type="menu" onClick={toggle} />
     </Popover>
   );
