@@ -6,11 +6,17 @@
     display: flex;
     align-items: center;
     background-color: #fff;
+    padding-left: 30px;
+    padding-right: 30px;
     &__title {
+      margin-right: auto;
       margin-bottom: 0;
+      @include media-breakpoint-down(sm) {
+        margin-left: auto;
+
+      }
     }
     &__menu {
-      margin-left: auto;
       &__popover {
         display: none;
         @include media-breakpoint-down(sm) {
@@ -28,6 +34,10 @@
   & &__content {
     flex-shrink: 0;
     padding-top: 24px;
+  }
+
+  &__footer {
+    text-align: center;
   }
 }
 
