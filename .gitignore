@@ -84,4 +84,6 @@ package-lock.json
 server/data
 configs
 
+build/report.html
+
 # End of https://www.gitignore.io/api/node
