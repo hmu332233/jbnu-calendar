@@ -13,7 +13,6 @@
       margin-bottom: 0;
       @include media-breakpoint-down(sm) {
         margin-left: auto;
-
       }
     }
     &__menu {
@@ -34,6 +33,9 @@
   & &__content {
     flex-shrink: 0;
     padding-top: 24px;
+    @include media-breakpoint-down(sm) {
+      padding-top: 16px;
+    }
   }
 
   &__footer {
