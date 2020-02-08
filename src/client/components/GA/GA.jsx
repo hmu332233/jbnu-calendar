@@ -7,8 +7,8 @@ class GA extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.history.action === 'PUSH' && typeof gtag === 'function') {
-      gtag('config', 'UA-99767689-2', {
+    if (this.props.history.action === 'PUSH' && typeof window.gtag === 'function') {
+      window.gtag('config', 'UA-99767689-2', {
         page_path: this.props.location.pathname,
       });
     }
