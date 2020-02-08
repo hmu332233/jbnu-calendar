@@ -9,7 +9,7 @@
     "start:server": "node src/server/bin/www",
     "test": "jest --detectOpenHandles --forceExit --config src/server/tests/config.js",
     "prettier": "prettier --write --config .prettierrc '**/*.js' '**/*.jsx' '**/*.scss'",
-    "build": "rm -rf build;parcel build src/client/index.html -d build --public-url ./assets"
+    "build": "rm -rf build;parcel build src/client/index.html -d build --public-url ./assets --no-source-maps"
   },
   "husky": {
     "hooks": {
@@ -37,6 +37,7 @@
     "jest": "^24.9.0",
     "lint-staged": "^9.5.0",
     "parcel-bundler": "^1.12.3",
+    "parcel-plugin-bundle-visualiser": "^1.2.0",
     "postcss-modules": "^1.4.1",
     "prettier": "^1.19.1",
     "sass": "^1.22.9"
