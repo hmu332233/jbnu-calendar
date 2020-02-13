@@ -8,6 +8,8 @@ const createError = require('http-errors');
 
 const middleware = require('./middlewares');
 
+const { sendErrorMessage } = require('./utils/slack');
+
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -52,6 +54,10 @@ app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = apiError.message;
   res.locals.error = process.env.NODE_ENV === 'development' ? apiError : {};
+
+  if (apiError.status === 500) {
+    sendErrorMessage(apiError);
+  }
 
   return res.status(apiError.status).json({ message: apiError.message });
 });
