@@ -29,6 +29,9 @@ class MainCalendar extends React.Component {
       usageStatistics: false,
       isReadOnly: this.props.isReadOnly,
       calendars: this.props.calendars,
+      month: {
+        daynames: ['일', '월', '화', '수', '목', '금', '토'],
+      },
       template: {
         popupDetailBody: function(schedule) {
           return `
@@ -36,6 +39,13 @@ class MainCalendar extends React.Component {
               ${schedule.raw.url ? `<a href="${schedule.raw.url}" target="_blank">${schedule.raw.url}</a>` : ''}
               <p style="white-space: pre-line">${schedule.body}</p>
             </div>
+          `;
+        },
+        monthGridHeaderExceed: function(hiddenSchedules) {
+          return `
+            <span class="${styles.More}">
+              + ${hiddenSchedules}
+            </span>
           `;
         },
       },
@@ -119,7 +129,7 @@ class MainCalendar extends React.Component {
             />
           </Col>
         </Row>
-        <div id={this.props.id} />
+        <div className={styles.MainCalendar__calendar} id={this.props.id} />
       </div>
     );
   }

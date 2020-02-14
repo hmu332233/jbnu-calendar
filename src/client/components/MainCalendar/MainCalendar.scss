@@ -20,6 +20,20 @@
         margin-left: 16px;
       }
     }
-    
   }
+  &__calendar {
+    height: 750px;
+  }
+}
+
+.More {
+  position: absolute;
+  top: 6px;
+  right: 4px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  font-size: 10px;
+  line-height: 2;
 }
