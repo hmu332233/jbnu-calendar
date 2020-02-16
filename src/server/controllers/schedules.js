@@ -44,3 +44,14 @@ exports.getSchedulesWithin3Month = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.updateShow = async (req, res, next) => {
+  const { id } = req.params;
+  const { show } = req.body;
+  try {
+    await Schedules.updateShow({ _id: id, show });
+    res.json(true);
+  } catch (err) {
+    next(err);
+  }
+};

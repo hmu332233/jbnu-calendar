@@ -17,6 +17,17 @@ exports.create = ({ calendarId, title, body, location, url, start, end, category
   });
 };
 
+exports.updateShow = ({ _id, show = false }) => {
+  return db.schedules.updateOne(
+    {
+      _id,
+    },
+    {
+      show,
+    }
+  );
+};
+
 exports.getMySchedules = () => {
   return db.schedules.find({}).lean();
 };

@@ -1,8 +1,10 @@
+const ObjectId = require('mongoose').Types.ObjectId;
+
 const { setupDB } = require('../../tests/setupDb');
 setupDB();
 
 const { db, CONSTANTS } = require('./info');
-const { create, getSchedulesWithin1Month, getSchedulesWithin3Month } = require('./model');
+const { create, getSchedulesWithin1Month, getSchedulesWithin3Month, updateShow } = require('./model');
 
 describe('create', () => {
   test('모든 데이터가 있을때 해당 내용으로 db에 저장이 됨', async () => {
@@ -113,6 +115,10 @@ describe('getSchedulesWithin1Month', () => {
     await db.schedules.create({ title: 'test', start: new Date('2019-11-20'), end: new Date('2020-11-30'), show: true });
   });
 
+  afterAll(async () => {
+    await db.schedules.deleteMany({});
+  });
+
   test('1월의 이벤트만 가져올때, 2개의 이벤트를 가져와야함', async () => {
     const schedules = await getSchedulesWithin1Month({ date: new Date('2020-01-01') });
     expect(schedules.length).toEqual(2);
@@ -136,5 +142,36 @@ describe('getSchedulesWithin1Month', () => {
   test('date가 이상한 문자열로 들어옴', async () => {
     // TODO: 해당 케이스에 대한 예외처리 추가하기
     expect(true).toEqual(true);
+  });
+});
+
+describe('updateShow', () => {
+  beforeAll(async () => {
+    await db.schedules.create({ title: 'test1', show: true });
+    await db.schedules.create({ title: 'test2', show: false });
+    await db.schedules.create({ title: 'test3', show: true });
+  });
+
+  afterAll(async () => {
+    await db.schedules.deleteMany({});
+  });
+
+  test('show가 false로 변경됨', async () => {
+    const originSchedule = await db.schedules.findOne({ title: 'test1' });
+    await updateShow({ _id: originSchedule._id, show: false });
+    const schedule = await db.schedules.findOne({ _id: originSchedule._id });
+    expect(schedule.show).toBe(false);
+  });
+  test('show가 true로 변경됨', async () => {
+    const originSchedule = await db.schedules.findOne({ title: 'test2' });
+    await updateShow({ _id: originSchedule._id, show: true });
+    const schedule = await db.schedules.findOne({ _id: originSchedule._id });
+    expect(schedule.show).toBe(true);
+  });
+  test('show가 없을때 false로 변경됨', async () => {
+    const originSchedule = await db.schedules.findOne({ title: 'test3' });
+    await updateShow({ _id: originSchedule._id });
+    const schedule = await db.schedules.findOne({ _id: originSchedule._id });
+    expect(schedule.show).toBe(false);
   });
 });
