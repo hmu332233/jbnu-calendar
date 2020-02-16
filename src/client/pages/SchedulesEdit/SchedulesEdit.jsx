@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './ScheduleRegister.scss';
+import styles from './SchedulesEdit.scss';
 
 import axios from 'axios';
 
-import { Row, Col, Button } from 'antd';
+import { Row, Col } from 'antd';
 
 import Layout from 'components/Layout';
 import ScheduleForm from 'components/ScheduleForm';
-import ScheduleList from 'components/ScheduleList';
 
-class ScheduleRegister extends React.Component {
+class SchedulesEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,18 +20,11 @@ class ScheduleRegister extends React.Component {
 
   componentDidMount = () => {
     this.fetchCalendars();
-    this.fetchSchedules();
   };
 
   fetchCalendars = () => {
     axios.get('/api/v1/calendars').then(res => {
       this.setState({ calendars: res.data });
-    });
-  };
-
-  fetchSchedules = () => {
-    axios.get('/api/v1/schedules/my').then(res => {
-      this.setState({ schedules: res.data });
     });
   };
 
@@ -53,21 +45,12 @@ class ScheduleRegister extends React.Component {
     });
   };
 
-  handleWriteButtonClick = () => {
-    this.props.history.push('/schedules/new');
-  };
-
   render() {
     return (
       <Layout activePage="schedules">
         <Row className={styles.ScheduleRegister__row} type="flex" justify="center" gutter={24}>
-          <Col span={16}>
-            <ScheduleList items={this.state.schedules} />
-          </Col>
-          <Col span={6}>
-            <Button type="primary" block onClick={this.handleWriteButtonClick}>
-              일정 작성
-            </Button>
+          <Col span={12}>
+            <ScheduleForm categories={this.state.calendars} onSubmit={this.handleSubmit} />
           </Col>
         </Row>
       </Layout>
@@ -75,7 +58,7 @@ class ScheduleRegister extends React.Component {
   }
 }
 
-ScheduleRegister.propTypes = {};
-ScheduleRegister.defaultProps = {};
+SchedulesEdit.propTypes = {};
+SchedulesEdit.defaultProps = {};
 
-export default ScheduleRegister;
+export default SchedulesEdit;

@@ -7,6 +7,7 @@ import GA from 'components/GA';
 import Main from 'pages/Main';
 const About = lazy(() => import('pages/About'));
 const ScheduleRegister = lazy(() => import('pages/ScheduleRegister'));
+const SchedulesEdit = lazy(() => import('pages/SchedulesEdit'));
 const ScheduleRequest = lazy(() => import('pages/ScheduleRequest'));
 const SignIn = lazy(() => import('pages/SignIn'));
 
@@ -19,6 +20,7 @@ function MainApp(props) {
           <Route path="/about" exact component={About} />
           <Route path="/request" exact component={ScheduleRequest} />
           <Route path="/schedules" exact component={ScheduleRegister} />
+          <Route path="/schedules/new" exact component={SchedulesEdit} />
           <Route path="/signin" exact component={SignIn} />
         </Switch>
       </Suspense>
