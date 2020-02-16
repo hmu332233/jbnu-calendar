@@ -14,20 +14,12 @@ class ScheduleRegister extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      calendars: [],
       schedules: [],
     };
   }
 
   componentDidMount = () => {
-    this.fetchCalendars();
     this.fetchSchedules();
-  };
-
-  fetchCalendars = () => {
-    axios.get('/api/v1/calendars').then(res => {
-      this.setState({ calendars: res.data });
-    });
   };
 
   fetchSchedules = () => {
@@ -36,33 +28,24 @@ class ScheduleRegister extends React.Component {
     });
   };
 
-  handleSubmit = ({ calendarId, title, body, location, url, start, end, allDay }) => {
-    const data = {
-      calendarId,
-      title,
-      body,
-      location,
-      url,
-      start,
-      end,
-      allDay,
-    };
-    axios.post('/api/v1/schedules', data).then(res => {
-      const newSchedule = res.data;
-      this.setState({ schedules: [...this.state.schedules, newSchedule] });
-    });
-  };
-
   handleWriteButtonClick = () => {
     this.props.history.push('/schedules/new');
   };
+
+  handleSwitchChange = item => {
+    axios.put(`/api/v1/schedules/${item._id}/show`, { show: !item.show }).then(res => {});
+  };
+
+  handleEditClick = item => {};
+
+  handleDeleteClick = item => {};
 
   render() {
     return (
       <Layout activePage="schedules">
         <Row className={styles.ScheduleRegister__row} type="flex" justify="center" gutter={24}>
           <Col span={16}>
-            <ScheduleList items={this.state.schedules} />
+            <ScheduleList items={this.state.schedules} onSwitchChange={this.handleSwitchChange} onEditClick={this.handleEditClick} onDeleteClick={this.handleDeleteClick} />
           </Col>
           <Col span={6}>
             <Button type="primary" block onClick={this.handleWriteButtonClick}>

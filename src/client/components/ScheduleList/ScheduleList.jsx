@@ -11,23 +11,35 @@ function ScheduleList(props) {
     <List
       itemLayout="horizontal"
       size="small"
-      pagination={{
-        onChange: page => {
-          console.log(page);
-        },
-      }}
       bordered
       dataSource={props.items}
-      renderItem={item => <ScheduleListItem key={item._id} title={item.title} description={item.category === 'time' ? `${item.end}` : `${item.start} - ${item.end}`} content={item.body} />}
+      renderItem={item => (
+        <ScheduleListItem
+          key={item._id}
+          title={item.title}
+          description={item.category === 'time' ? `${item.end}` : `${item.start} - ${item.end}`}
+          content={item.body}
+          checked={item.show}
+          onSwitchChange={() => props.onSwitchChange(item)}
+          onEditClick={() => props.onEditClick(item)}
+          onDeleteClick={() => props.onDeleteClick(item)}
+        />
+      )}
     />
   );
 }
 
 ScheduleList.propTypes = {
   items: PropTypes.array,
+  onSwitchChange: PropTypes.func,
+  onEditClick: PropTypes.func,
+  onDeleteClick: PropTypes.func,
 };
 ScheduleList.defaultProps = {
   items: [],
+  onSwitchChange: v => v,
+  onEditClick: v => v,
+  onDeleteClick: v => v,
 };
 
 export default ScheduleList;

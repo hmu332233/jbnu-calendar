@@ -40,8 +40,7 @@ class SchedulesEdit extends React.Component {
       allDay,
     };
     axios.post('/api/v1/schedules', data).then(res => {
-      const newSchedule = res.data;
-      this.setState({ schedules: [...this.state.schedules, newSchedule] });
+      this.props.history.push('/schedules');
     });
   };
 
