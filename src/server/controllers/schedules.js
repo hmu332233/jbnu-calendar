@@ -1,10 +1,11 @@
+const service = require('../services');
 const Schedules = require('../models/schedules');
 const Calendars = require('../models/calendars');
 
 exports.create = async (req, res, next) => {
   const { calendarId, title, body, location, url, start, end, allDay } = req.body;
   try {
-    const newSchedule = await Schedules.create({
+    const newSchedule = await service.schedules.create({
       calendarId,
       title,
       body,
