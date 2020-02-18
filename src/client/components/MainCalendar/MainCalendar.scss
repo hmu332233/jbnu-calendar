@@ -1,3 +1,5 @@
+@import '~~utils/scss/mixin.scss';
+
 .MainCalendar {
   &__header {
     display: flex;
@@ -23,6 +25,9 @@
   }
   &__calendar {
     height: 750px;
+    @include media-breakpoint-down(sm) {
+      height: 600px;
+    }
   }
 }
 
