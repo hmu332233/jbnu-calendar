@@ -60,7 +60,7 @@
     "react-icons": "^3.7.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
-    "redux": "^4.0.4",
+    "redux": "^4.0.5",
     "tui-calendar": "^1.12.11"
   }
 }
