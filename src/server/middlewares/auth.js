@@ -16,7 +16,7 @@ exports.checkView = () => async (req, res, next) => {
   next();
 };
 
-exports.checkAuth = () => async (req, res, next) => {
+exports.checkAuth = ({ includeUserData = false } = {}) => async (req, res, next) => {
   const token = req.cookies['x-access-token'] || req.query.token;
   if (!token) {
     return res.status(401).json(false);
@@ -26,7 +26,11 @@ exports.checkAuth = () => async (req, res, next) => {
   if (!isVerified) {
     return res.status(401).json(false);
   }
-  const user = await Users.findById({ _id });
-  req.userData = user;
+
+  if (includeUserData) {
+    const user = await Users.findById({ _id });
+    req.userData = user;
+  }
+
   next();
 };
