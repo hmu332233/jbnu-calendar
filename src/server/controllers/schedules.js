@@ -20,6 +20,17 @@ exports.create = async (req, res, next) => {
   }
 };
 
+exports.getSchedule = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    // TODO: 권한체크 로직 추가
+    const schedule = await Schedules.getSchedule({ _id: id });
+    res.json(schedule);
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.getMySchedules = async (req, res, next) => {
   try {
     // TODO: 내가 등록한 스케쥴만 가져오도록 하기

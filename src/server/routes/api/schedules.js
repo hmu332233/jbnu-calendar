@@ -5,6 +5,7 @@ const middleware = require('../../middlewares');
 const controller = require('../../controllers');
 
 router.get('/', controller.schedules.getSchedulesWithin3Month);
+router.get('/:id', controller.schedules.getSchedule);
 router.get('/my', middleware.auth.checkAuth(), controller.schedules.getMySchedules);
 router.post('/', controller.schedules.create);
 
