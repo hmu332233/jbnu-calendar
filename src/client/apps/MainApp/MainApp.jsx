@@ -21,6 +21,7 @@ function MainApp(props) {
           <Route path="/request" exact component={ScheduleRequest} />
           <Route path="/schedules" exact component={ScheduleRegister} />
           <Route path="/schedules/new" exact component={SchedulesEdit} />
+          <Route path="/schedules/edit/:id" exact component={SchedulesEdit} />
           <Route path="/signin" exact component={SignIn} />
         </Switch>
       </Suspense>

@@ -36,7 +36,9 @@ class ScheduleRegister extends React.Component {
     axios.put(`/api/v1/schedules/${item._id}/show`, { show: !item.show }).then(res => {});
   };
 
-  handleEditClick = item => {};
+  handleEditClick = item => {
+    this.props.history.push(`/schedules/edit/${item._id}`);
+  };
 
   handleDeleteClick = item => {};
 
