@@ -4,7 +4,7 @@ const { setupDB } = require('../../tests/setupDb');
 setupDB();
 
 const { db, CONSTANTS } = require('./info');
-const { create, getSchedulesWithin1Month, getSchedulesWithin3Month, updateShow } = require('./model');
+const { create, getSchedule, getSchedulesWithin1Month, getSchedulesWithin3Month, updateShow } = require('./model');
 
 describe('create', () => {
   test('모든 데이터가 있을때 해당 내용으로 db에 저장이 됨', async () => {
@@ -40,6 +40,24 @@ describe('create', () => {
     const schedule = await db.schedules.findOne({ title: 'createTest2' }, { __v: 0, _id: 0 }).lean();
     expect(schedule.category).toEqual(CONSTANTS.CATEGORY.ALLDAY);
     expect(schedule.show).toEqual(false);
+  });
+});
+
+describe('getSchedule', () => {
+  beforeAll(async () => {
+    await db.schedules.create({ title: 'test1', show: true });
+    await db.schedules.create({ title: 'test2', show: false });
+    await db.schedules.create({ title: 'test3', show: true });
+  });
+
+  afterAll(async () => {
+    await db.schedules.deleteMany({});
+  });
+
+  test('findOne과 같은 데이터를 가져옴', async () => {
+    const originSchedule = await db.schedules.findOne({ title: 'test3' }).lean();
+    const testSchedule = await getSchedule({ _id: originSchedule._id });
+    expect(originSchedule).toEqual(testSchedule);
   });
 });
 

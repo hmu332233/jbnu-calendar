@@ -28,6 +28,10 @@ exports.updateShow = ({ _id, show = false }) => {
   );
 };
 
+exports.getSchedule = ({ _id }) => {
+  return db.schedules.findOne({ _id }).lean();
+};
+
 exports.getMySchedules = () => {
   return db.schedules.find({}).lean();
 };
