@@ -9070,10 +9070,10 @@ tty-browserify@0.0.0:
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
   integrity sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=
 
-tui-calendar@^1.12.8:
-  version "1.12.8"
-  resolved "https://registry.yarnpkg.com/tui-calendar/-/tui-calendar-1.12.8.tgz#72f2004daacad3077c81699932649f0a54454ca2"
-  integrity sha512-mQRv66KKfkaG6AS9pW2DexdICHIz8c5zUpK+3e0ci0YTs4J9UFxNny4l4HMgI38AnKfvXJQjoyiAkTFRyhArhQ==
+tui-calendar@^1.12.11:
+  version "1.12.11"
+  resolved "https://registry.yarnpkg.com/tui-calendar/-/tui-calendar-1.12.11.tgz#bb676180a8ce1603eddb8b1fb288b6947d873477"
+  integrity sha512-uJ4DrRZ5OhypPyYgLyJhTuh3Y89Nsb92vusDvYYvOmJeeW5voEfFQjMUwYMYqmaEo3SuEDLTNoOi0DSJKgh2Aw==
   dependencies:
     tui-code-snippet "^1.5.0"
     tui-date-picker "^4.0.2"
