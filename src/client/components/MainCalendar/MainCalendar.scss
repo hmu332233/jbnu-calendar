@@ -1,3 +1,5 @@
+@import '~~utils/scss/mixin.scss';
+
 .MainCalendar {
   &__header {
     display: flex;
@@ -20,6 +22,23 @@
         margin-left: 16px;
       }
     }
-    
   }
+  &__calendar {
+    height: 750px;
+    @include media-breakpoint-down(sm) {
+      height: 600px;
+    }
+  }
+}
+
+.More {
+  position: absolute;
+  top: 6px;
+  right: 4px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  font-size: 10px;
+  line-height: 2;
 }
