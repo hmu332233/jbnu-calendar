@@ -27,13 +27,6 @@
       "git add"
     ]
   },
-  "alias": {
-    "components": "./src/client/components",
-    "containers": "./src/client/containers",
-    "hooks": "./src/client/hooks",
-    "pages": "./src/client/pages",
-    "store": "./src/client/store"
-  },
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
