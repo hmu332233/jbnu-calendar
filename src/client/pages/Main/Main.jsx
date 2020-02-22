@@ -17,14 +17,22 @@ class Main extends React.Component {
   }
 
   componentDidMount = () => {
+    this.fetchCalendars();
     this.fetchSchedules();
+  };
+
+  fetchCalendars = () => {
+    axios.get('/api/v1/calendars').then(res => {
+      this.setState({
+        calendars: res.data,
+      });
+    });
   };
 
   fetchSchedules = date => {
     axios.get('/api/v1/schedules', { params: { date } }).then(res => {
       this.setState({
-        calendars: res.data.calendars,
-        schedules: res.data.schedules.map(schedule => ({ ...schedule, start: new Date(schedule.start), end: new Date(schedule.end), raw: schedule })),
+        schedules: res.data.map(schedule => ({ ...schedule, start: new Date(schedule.start), end: new Date(schedule.end), raw: schedule })),
       });
     });
   };

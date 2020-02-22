@@ -1,10 +1,11 @@
+const service = require('../services');
 const Schedules = require('../models/schedules');
 const Calendars = require('../models/calendars');
 
 exports.create = async (req, res, next) => {
   const { calendarId, title, body, location, url, start, end, allDay } = req.body;
   try {
-    const newSchedule = await Schedules.create({
+    const newSchedule = await service.schedules.create({
       calendarId,
       title,
       body,
@@ -34,12 +35,8 @@ exports.getMySchedules = async (req, res, next) => {
 exports.getSchedulesWithin3Month = async (req, res, next) => {
   const { date } = req.query;
   try {
-    const calendars = await Calendars.getAllCalendars();
     const schedules = await Schedules.getSchedulesWithin3Month({ date });
-    res.json({
-      calendars,
-      schedules: schedules.map(v => ({ ...v, id: v._id })),
-    });
+    res.json(schedules.map(v => ({ ...v, id: v._id })));
   } catch (err) {
     next(err);
   }
