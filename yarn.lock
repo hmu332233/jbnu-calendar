@@ -1285,10 +1285,10 @@ ansi-to-html@^0.6.4:
   dependencies:
     entities "^1.1.1"
 
-antd@^3.26.5:
-  version "3.26.5"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.26.5.tgz#83e96a5c3f5fdf27bcf6daeffce78c2e88e9d555"
-  integrity sha512-vD45SKnPq6GDwP+vdv5LIFTztPBGp2uJPuYdu8vUCl4iFSdljYldfsNAzMfRygk7QHRb22vX1Vo/KoH+I7wVMA==
+antd@^3.26.12:
+  version "3.26.12"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-3.26.12.tgz#2f075670780ac0490b2945d8bca883edcd93158c"
+  integrity sha512-aXiRDDpDx1jH/gKJDE2dgZPT1C7qurOZ1OSt9RklQT2K6CFlveF8HJY7Jz1/xHikXA+kmy6kr/OACJiaxBFRkA==
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
     "@ant-design/icons" "~2.1.1"
