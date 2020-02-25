@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ScheduleForm.scss';
 
+import moment from 'moment';
 import { Form, Input, DatePicker, Checkbox, Button, Select } from 'antd';
 
 import useToggle from 'hooks/useToggle';
@@ -13,13 +14,13 @@ const DATE_TYPE = {
 };
 
 function ScheduleForm(props) {
-  const { value: title, onChange: onTitleChange, setValue: setTitle } = useInput();
-  const { value: body, onChange: onBodyChange, setValue: setBody } = useInput();
-  const { value: url, onChange: onUrlChange, setValue: setUrl } = useInput();
-  const { value: location, onChange: onLocationChange, setValue: setLocation } = useInput();
-  const [dates, setDates] = useState({ start: '', end: '' });
-  const [showTime, toggle] = useToggle(false);
-  const [category, setCategory] = useState('');
+  const { value: title, onChange: onTitleChange, setValue: setTitle } = useInput(props.defaultValue.title);
+  const { value: body, onChange: onBodyChange, setValue: setBody } = useInput(props.defaultValue.body);
+  const { value: url, onChange: onUrlChange, setValue: setUrl } = useInput(props.defaultValue.url);
+  const { value: location, onChange: onLocationChange, setValue: setLocation } = useInput(props.defaultValue.location);
+  const [dates, setDates] = useState({ start: props.defaultValue.start, end: props.defaultValue.end });
+  const [showTime, toggle] = useToggle(!props.defaultValue.allDay);
+  const [category, setCategory] = useState(props.defaultValue.categoryId);
 
   const reset = () => {
     setTitle('');
@@ -59,7 +60,7 @@ function ScheduleForm(props) {
     <div className={styles.ScheduleForm}>
       <Form>
         <Form.Item required>
-          <Select placeholder="카테고리 (필수)" onChange={handleCategoryChange}>
+          <Select placeholder="카테고리 (필수)" defaultValue={category} onChange={handleCategoryChange}>
             {props.categories.map(category => (
               <Select.Option value={category.id}>{category.name}</Select.Option>
             ))}
@@ -76,6 +77,7 @@ function ScheduleForm(props) {
             style={{ width: '100%' }}
             showTime={showTime}
             format={showTime ? DATE_TYPE.DATE : DATE_TYPE.TIME}
+            defaultValue={[moment(dates.start), moment(dates.end)]}
             onChange={handleDateChange}
             placeholder={['시작일 (필수)', '종료일 (필수)']}
           />
@@ -101,9 +103,22 @@ function ScheduleForm(props) {
 
 ScheduleForm.propTypes = {
   categories: [],
+  initValue: PropTypes.shape({
+    categoryId: PropTypes.string,
+    title: PropTypes.string,
+    body: PropTypes.string,
+    location: PropTypes.string,
+    url: PropTypes.string,
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
+    allDay: PropTypes.bool,
+  }),
   onSubmit: PropTypes.func,
 };
 ScheduleForm.defaultProps = {
+  defaultValue: {
+    allDay: true,
+  },
   onSubmit: v => v,
 };
 

@@ -1,6 +1,13 @@
 const Schedules = require('../models/schedules');
 const Calendars = require('../models/calendars');
 
+const nomalizeScheudle = schedule => ({
+  ...schedule,
+  id: schedule._id,
+  categoryId: schedule.calendarId,
+  allDay: schedule.category === Schedules.CONSTANTS.CATEGORY.ALLDAY,
+});
+
 exports.create = async (req, res, next) => {
   const { calendarId, title, body, location, url, start, end, allDay } = req.body;
   try {
@@ -25,7 +32,7 @@ exports.getSchedule = async (req, res, next) => {
   try {
     // TODO: 권한체크 로직 추가
     const schedule = await Schedules.getSchedule({ _id: id });
-    res.json(schedule);
+    res.json(nomalizeScheudle(schedule));
   } catch (err) {
     next(err);
   }
@@ -36,7 +43,7 @@ exports.getMySchedules = async (req, res, next) => {
     // TODO: 내가 등록한 스케쥴만 가져오도록 하기
     // NOTE: 그 이전에 auth 관련 기능들이 먼저 만들어져야함
     const schedules = await Schedules.getMySchedules();
-    res.json(schedules.map(v => ({ ...v, id: v._id })));
+    res.json(schedules.map(nomalizeScheudle));
   } catch (err) {
     next(err);
   }
