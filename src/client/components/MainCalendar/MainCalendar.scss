@@ -28,6 +28,13 @@
     @include media-breakpoint-down(sm) {
       height: 600px;
     }
+
+    :global(.tui-full-calendar-month-week-item .tui-full-calendar-weekday-schedule) {
+      margin: 0 6px;
+      @include media-breakpoint-down(sm) {
+        margin: 0 4px;
+      }
+    }
   }
 }
 
