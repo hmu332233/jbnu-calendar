@@ -49,6 +49,10 @@ class MainCalendar extends React.Component {
           `;
         },
       },
+      theme: {
+        'month.schedule.marginLeft': '6px',
+        'month.schedule.marginRight': '6px',
+      },
     });
 
     this.calendar.createSchedules(this.props.schedules);
