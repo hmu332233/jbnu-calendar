@@ -50,8 +50,8 @@ class MainCalendar extends React.Component {
         },
       },
       theme: {
-        'month.schedule.marginLeft': '6px',
-        'month.schedule.marginRight': '6px',
+        'month.schedule.marginLeft': '4px',
+        'month.schedule.marginRight': '4px',
       },
     });
 

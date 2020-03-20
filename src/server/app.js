@@ -11,7 +11,7 @@ const middleware = require('./middlewares');
 const { sendErrorMessage } = require('./utils/slack');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.once('open', () => {
   console.log('DB connected!');
