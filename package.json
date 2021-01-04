@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "antd": "^3.26.5",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "cookie-parser": "^1.4.4",
     "dayjs": "^1.8.16",
